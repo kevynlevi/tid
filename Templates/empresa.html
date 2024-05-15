@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<html lang="pt-br">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/4.0.2/jquery.maskMoney.min.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/empresa.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="shortcut icon" href="static/img/minilogo.png" type="image/png"/>
+  <title>Park Assist</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/4.0.2/jquery.maskMoney.min.js"></script>
+</head>
+<body>
+  <div class="background-image">
+    <div class="container-wrapper">
+      <div id="container">
+        <button id="toggle-mode">
+          <span class="sr-only">Ativar Light Mode</span>
+          <i class="ph-bold ph-sun"></i>
+          <i class="ph-bold ph-moon"></i>
+        </button>
+
+        <div id="logo">
+          <img src="static/img/logo.png" alt="Imagem de um carro em uma garagem com a palavra ParkAssist">
+        </div>
+
+        <form id="empresa-form" method="POST" action="/cadastrar_empresa">
+          <div class="input-wrapper">
+            <label for="company-name">Nome da Empresa</label>
+            <input type="text" id="company-name" name="company-name" required/>
+            <span class="error-message" id="event-nome-error"></span>
+          </div>
+          
+          <div class="input-wrapper">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+            <span class="error-message" id="event-email-error"></span>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" required minlength="8"/>
+            <span class="error-message" id="event-senha-error"></span>
+            <i class="bi bi-eye-fill" id="btn-senha" onclick="mostrarSenha()"></i>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="address">CEP</label>
+            <input type="text" id="cep" name="cep" required />
+            <span class="error-message" id="event-cep-error"></span>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="address">Endereço</label>
+            <input type="text" id="address" name="address" required />
+            <span class="error-message" id="event-address-error"></span>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="address">Bairro</label>
+            <input type="text" id="bairro" name="bairro" required />
+            <span class="error-message" id="event-bairro-error"></span>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="address">Cidade</label>
+            <input type="text" id="cidade" name="cidade" required />
+            <span class="error-message" id="event-cidade-error"></span>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="vacancies">Quantidade de Vagas</label>
+            <input type="text" id="vacancies" name="vacancies" inputmode="numeric" required />
+            <span class="error-message" id="event-vacancies-error"></span>
+          </div>
+
+          <div class="input-wrapper radio-wrapper">
+            <span>Selecione a forma de cobrança:</span>
+            <input type="radio" id="price-hourly" name="price-type" value="Por hora" required />
+            <label for="price-hourly">Por hora</label>
+            
+            <input type="radio" id="price-daily" name="price-type" value="Diária" required />
+            <label for="price-daily">Diária</label>
+            <span class="error-message" id="event-vacancies-error"></span>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="price">Preço </label>
+            <input type="text" id="money" name="money" />
+            <span class="error-message" id="event-price-error"></span>
+          </div>
+
+          <div class="button-container">
+            <button type="submit" id="submit-btn">Concluir</button>
+            <button type="button" id="cancel-btn">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+  <script src="cep.js"></script>
+  <script>
+    $('#money').mask("#.##0,00", {reverse: true});
+    $('#cep').mask('00000-000');
+  </script>
+
+  <script>
+    document.getElementById('submit-btn').addEventListener('click', function(event) {
+      event.preventDefault();
+      const inputFields = [
+        { id: "company-name", errorId: 'event-nome-error' },
+        { id: 'email', errorId: 'event-email-error' },
+        { id: 'password', errorId: 'event-senha-error' },
+        { id: 'cep', errorId: 'event-cep-error' },
+        { id: 'address', errorId: 'event-address-error' },
+        { id: 'bairro', errorId: 'event-bairro-error' },
+        { id: 'cidade', errorId: 'event-cidade-error' },
+        { id: 'vacancies', errorId: 'event-vacancies-error' },
+        { id: 'money', errorId: 'event-price-error' }
+      ];
+      let isFormValid = true;
+  
+      inputFields.forEach(field => {
+        const inputElement = document.getElementById(field.id);
+        const errorElement = document.getElementById(field.errorId);
+        if (!inputElement.value.trim()) {
+          isFormValid = false;
+          errorElement.innerText = `Por favor, preencha o campo "${inputElement.previousElementSibling.innerText}"`;
+        } else {
+          errorElement.innerText = '';
+        }
+      });
+  
+      // Remover vírgula do campo de preço e garantir que seja um número decimal válido
+      const precoInput = document.getElementById('money');
+      const precoValue = precoInput.value.replace(',', '.');
+      if (isNaN(parseFloat(precoValue))) {
+        document.getElementById('event-price-error').innerText = 'Insira um preço válido.';
+        isFormValid = false;
+      }
+  
+      if (isFormValid) {
+        precoInput.value = precoValue; // Atualizar o valor do campo de preço
+        document.getElementById('empresa-form').submit(); // Envie o formulário se for válido
+      }
+    });
+  </script>
+  <script>
+    document.getElementById('cancel-btn').addEventListener('click', function() {
+      window.location.href = 'index.html';
+    });
+  </script>
+
+  <script>
+    function mostrarSenha(){
+      var inputPass = document.getElementById('password')
+      var btnShowPass = document.getElementById('btn-senha')
+
+      if(inputPass.type === 'password'){
+        inputPass.setAttribute('type', 'text')
+        btnShowPass.classList.replace('bi-eye-fill','bi-eye-slash-fill')
+      }
+      else{
+        inputPass.setAttribute('type', 'password')
+        btnShowPass.classList.replace('bi-eye-slash-fill','bi-eye-fill')
+      }
+    }
+  </script>
+
+  <script>
+    let darkMode = true
+
+    const buttonToggle = document.getElementById("toggle-mode")
+    // Verificar se a preferência do usuário está armazenada
+    const isLightMode = localStorage.getItem("isLightMode") === "true";
+
+    // Aplicar ou remover a classe de acordo com a preferência
+    if (isLightMode) {
+      document.documentElement.classList.add("light");
+    } else {
+      document.documentElement.classList.remove("light");
+    }
+
+    buttonToggle.addEventListener("click", (event) => {
+      document.documentElement.classList.toggle("light")
+
+      const isLightMode = document.documentElement.classList.contains("light")
+
+      localStorage.setItem("isLightMode", isLightMode.toString())
+
+      const mode = darkMode ? "light" : "dark"
+      event.currentTarget.querySelector(
+        "span"
+      ).textContent = `${mode} mode ativado`
+
+      darkMode = !darkMode
+    })
+  </script>
+</body>
+</html>

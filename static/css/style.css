@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --hue: 194;
+  --bg-img: url('/static/img/bg-desktop.jpg');
+  --text-color: hsl(var(--hue), 40%, 98%);
+  --logo-filter: invert(100%);
+  --bt-color: white;
+  --bg-container: rgba(255, 255, 255, 0.1);  
+}
+
+html.light {
+  --bg-img: url('/static/img/bg-desktop-light.jpg');
+  --text-color: rgba(0, 0, 0, 0.247);
+  --logo-filter: invert(50%);
+  --bt-color: rgb(0, 0, 0);
+  --bg-container: rgba(255, 53, 53, 0.13);
+}
+
+html.light .ph-sun,
+html:not(.light) .ph-moon {
+  display: none;
+}
+
+#toggle-mode {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 4.4rem;
+  position: absolute;
+  right: 3.2rem;
+  top: 3.2rem;
+  line-height: 0;
+  color: var(--text-color);
+}
+
+.sr-only {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  appearance: none;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  min-height: 100vh;
+}
+
+#container {
+  width: 100%;
+  max-width: 588px;
+  padding: 0 24px;
+  border-radius: 5%;
+  background-color: var(--bg-container);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px auto 20px;
+}
+
+#logo {
+  text-align: center;
+  padding: 1.5rem;
+  margin-bottom: 5rem;
+}
+
+#logo img {
+  width: 20rem;
+  filter: var(--logo-filter);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.button-container button {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  opacity: 0.8;
+}
+
+.button-container span {
+  font-family: 'goldana', sans-serif;
+  font-size: 4rem;
+  font-weight: 500;
+  color: var(--bt-color);
+  margin-bottom: 10px;
+}
+
+#botao-cliente {
+  border: 0.5rem solid #55AC7D;
+  width: 30rem;
+  height: 8rem;
+  margin: auto;
+  border-radius: 2rem;
+  color: #428360;
+  font-weight: 550;
+  margin-bottom: 10px;
+}
+
+#botao-cliente:hover {
+  background-color: #55AC7D;
+  border: 0.5rem solid #2e5842;
+  color: #000000;
+  transition: 1s;
+}
+
+#botao-empresa {
+  border: 0.5rem solid #8C2F12;
+  width: 30rem;
+  height: 8rem;
+  margin: auto;
+  border-radius: 2rem;
+  color: #8C2F12;
+  font-weight: 550;
+  margin-bottom: 10px;
+}
+
+#botao-empresa:hover {
+  background-color: #ac3a17;
+  border: 0.5rem solid #4e1909;
+  color: #000000;
+  transition: 1s;
+}
+
+#botao-login {
+  border: 0.5rem solid #12528d;
+  width: 30rem;
+  height: 8rem;
+  margin: auto;
+  border-radius: 2rem;
+  color: #124b8c;
+  font-weight: 550;
+}
+
+#botao-login:hover {
+  background-color: #2156c7;
+  border: 0.5rem solid #1f07f8;
+  color: #000000;
+  transition: 1s;
+}

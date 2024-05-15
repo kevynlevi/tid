@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    font-size: 62.5%;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.background-image {
+    background-image: url('bg-desktop.jpg'); /* Substitua 'sua-imagem.jpg' pelo nome da sua imagem */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+#logo{
+    text-align: center;
+    padding: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+#logo img{
+    width: 20rem;
+    filter: invert(100%);
+}
+
+.input-wrapper input[type="text"]{
+  font-size: 1.6rem;
+  font-weight: 550;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 0rem;
+  margin-bottom: 0.5rem;
+  outline: none;
+  text-indent: 5px;
+  height: 4rem;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 50%; /* Definir uma largura de 50% */
+    color: azure;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto; /* Define margens automáticas para centralizar horizontalmente */
+    margin-bottom: 40px; /* Adiciona margem na parte inferior para espaçamento entre os elementos */
+}
+
+
+  .input-wrapper label {
+    margin-right: 0px; 
+    font-size: 1.6rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    border-radius: 10px;
+    color: azure; /* ou qualquer cor desejada */
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ajuste para center */
+    justify-content: center;
+    margin-bottom: 2rem; /* Adicionado para espaçamento entre o logotipo e os botões */
+  }
+  #botao-voltar {
+    border: 0.5rem solid #12528d;
+    width: 20rem;
+    height: 6rem;
+    margin: auto;
+    border-radius: 2rem;
+    color: #124b8c;
+    font-weight: 550;
+    margin-top: 50px;
+  }
+  #botao-voltar:hover {
+    background-color: #2156c7;
+    border: 0.5rem solid #1f07f8;
+    color: #000000;
+    transition: 1s;
+}
+  
+.button-container button {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-container button:hover {
+    opacity: 0.8;
+  }
+  
+  
