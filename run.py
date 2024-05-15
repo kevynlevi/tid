@@ -132,13 +132,13 @@ def login():
         cliente = Cliente.query.filter_by(email=email, senha=senha).first()
         if cliente:
             login_user(cliente)
-            return redirect(url_for('cliente'))
+            return render_template('pesqclnt')
         
         # Verifica se o usuário é uma empresa
         empresa = Empresa.query.filter_by(email=email, senha=senha).first()
         if empresa:
             login_user(empresa)
-            return redirect(url_for('empresa'))
+            return render_template('pesqemp')
         
         # Se nenhum usuário for encontrado, exibe uma mensagem de erro
         flash('Credenciais inválidas. Por favor, tente novamente.', 'error')
