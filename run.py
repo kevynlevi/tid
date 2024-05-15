@@ -20,10 +20,12 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 # Models do banco de dados
 class Cliente(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
     nome = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     senha = db.Column(db.String(255), nullable=False)
     placa = db.Column(db.String(7), nullable=False, unique=True)
+    
 
 class Empresa(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -70,17 +72,11 @@ def cadastrar_cliente():
         senha = request.form['event-senha']
         placa = request.form['plate-number']
         
-        # Check if the email or plate number already exists in the database
-        existing_cliente = Cliente.query.filter_by(email=email).first()
-        if existing_cliente:
-            return 'Este email já está em uso!'
+        # Get the current logged-in user
+        usuario_atual = current_user
         
-        existing_placa = Cliente.query.filter_by(placa=placa).first()
-        if existing_placa:
-            return 'Esta placa já está em uso!'
-        
-        # Create a new Cliente instance
-        new_cliente = Cliente(nome=nome, email=email, senha=senha, placa=placa)
+        # Create a new Cliente instance and associate it with the current user
+        new_cliente = Cliente(usuario=usuario_atual, nome=nome, email=email, senha=senha, placa=placa)
         
         # Add the new cliente to the database
         db.session.add(new_cliente)
@@ -170,6 +166,24 @@ def cliente():
 @app.route('/telafinal.html')
 def telafinal():
     return render_template('telafinal.html')
+@app.route('/pesquisar_carro', methods=['POST'])
+def pesquisar_carro():
+    if request.method == 'POST':
+        # Obtenha a placa do carro da solicitação POST
+        placa = request.form['event-nome']
+        
+        # Pesquise no banco de dados as informações do carro com base na placa
+        carro = Cliente.query.filter_by(placa=placa).first()
+        
+        if carro:
+            # Se o carro for encontrado, passe as informações para o template HTML
+            return render_template("telafinalDois.html", carro=carro)
+        else:
+            # Se o carro não for encontrado, exiba uma mensagem de erro
+            flash('Carro não encontrado.', 'error')
+            return redirect(url_for('index'))
+    else:
+        return 'Método não permitido!'
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -35,21 +35,17 @@
             alt="Imagem de um carro em uma garagem com a palavra ParkAssist"
           />
         </div>
-        <div class="input-wrapper">
-          <label for="event-nome">Pesquisar Placa</label>
-          <input
-            type="text"
-            id="event-nome"
-            required
-            minlength="8"
-            class="input-field"
-          />
-          <span class="error-message" id="event-nome-error"></span>
-        </div>
-        <br />
-
-        <div id="button-container">
-          <button id="submit-btn">Pesquisar</button>
+        <form action="/pesquisar_carro" method="POST">
+          <div class="input-wrapper">
+              <label for="event-nome">Pesquisar Placa empresa</label>
+              <input type="text" id="event-nome" name="event-nome" required class="input-field">
+              <span class="error-message" id="event-nome-error"></span>
+          </div>
+          <br>
+          <div id="button-container">
+              <button type="submit" id="submit-btn">Pesquisar</button>
+          </div>
+      </form>
           <button id="cancel-btn">Voltar</button>
         </div>
       </div>
@@ -64,78 +60,7 @@
 
     </script>
 
-    <script>
-      document
-        .getElementById("submit-btn")
-        .addEventListener("click", function (event) {
-          event.preventDefault()
-
-          const inputFields = [
-            { id: "event-nome", errorId: "event-nome-error" }
-          ]
-
-          let isFormValid = true
-
-          inputFields.forEach((field) => {
-            const inputElement = document.getElementById(field.id)
-
-            const errorElement = document.getElementById(field.errorId)
-
-            if (!inputElement.value.trim()) {
-              isFormValid = false
-
-              errorElement.innerText = `Por favor, preencha o campo "${inputElement.previousElementSibling.innerText}".`
-            } else {
-              errorElement.innerText = ""
-            }
-          })
-
-          if (isFormValid) {
-          }
-        })
-    </script>
-    <script>
-      document
-        .getElementById("cancel-btn")
-        .addEventListener("click", function () {
-          window.location.href = "empresa.html"
-        })
-    </script>
-
-    </script>
-    <script>
-      let darkMode = true
-
-      const buttonToggle = document.getElementById("toggle-mode")
-      // Verificar se a preferência do usuário está armazenada
-      const isLightMode = localStorage.getItem("isLightMode") === "true"
-
-      // Aplicar ou remover a classe de acordo com a preferência
-      if (isLightMode) {
-        document.documentElement.classList.add("light")
-      } else {
-        document.documentElement.classList.remove("light")
-      }
-
-      buttonToggle.addEventListener("click", (event) => {
-        document.documentElement.classList.toggle("light")
-
-        // Verificar se o modo atual é light ou não
-        const isLightMode = document.documentElement.classList.contains("light")
-
-        // Armazenar a preferência do usuário no armazenamento local
-        localStorage.setItem("isLightMode", isLightMode.toString())
-
-        // Resto do seu código de troca de modo
-
-        const mode = darkMode ? "light" : "dark"
-        event.currentTarget.querySelector(
-          "span"
-        ).textContent = `${mode} mode ativado`
-
-        darkMode = !darkMode
-      })
-    </script>
+   
   <script src="enter.js"></script>
   </body>
 </html>
