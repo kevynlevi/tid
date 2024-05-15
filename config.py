@@ -6,6 +6,6 @@ SQLALCHEMY_DATABASE_URI = \
         username='root',
         password='admin',
         server='localhost',
-        port='3306',
+        port='3050',
         database='parkassistent'
 )

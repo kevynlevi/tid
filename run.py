@@ -132,13 +132,13 @@ def login():
         cliente = Cliente.query.filter_by(email=email, senha=senha).first()
         if cliente:
             login_user(cliente)
-            return render_template('pesqclnt')
+            return render_template('pesqclnt.html')
         
         # Verifica se o usuário é uma empresa
         empresa = Empresa.query.filter_by(email=email, senha=senha).first()
         if empresa:
             login_user(empresa)
-            return render_template('pesqemp')
+            return render_template('pesqemp.html')
         
         # Se nenhum usuário for encontrado, exibe uma mensagem de erro
         flash('Credenciais inválidas. Por favor, tente novamente.', 'error')

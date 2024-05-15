@@ -67,131 +67,13 @@
         
           <div id="button-container">
             <button type="submit" id="submit-btn">Login</button>
+          </form>
             <button type="button" id="cancel-btn">Cancelar</button>
           </div>
-        </form>
+        
       </div>
     </div>
-    <script>
-      document
-        .getElementById("submit-btn")
-        .addEventListener("click", function (event) {
-          event.preventDefault()
 
-          const inputFields = [
-            { id: "event-email", errorId: "event-email-error" },
-
-            { id: "event-senha", errorId: "event-senha-error" },
-          ]
-
-          let isFormValid = true
-
-          inputFields.forEach((field) => {
-            const inputElement = document.getElementById(field.id)
-
-            const errorElement = document.getElementById(field.errorId)
-
-            if (!inputElement.value.trim()) {
-              isFormValid = false
-
-              errorElement.innerText = `Por favor, preencha o campo "${inputElement.previousElementSibling.innerText}".`
-            } else {
-              errorElement.innerText = ""
-            }
-          })
-
-          if (isFormValid) {
-          }
-        })
-    </script>
-    <script>
-      document
-        .getElementById("cancel-btn")
-        .addEventListener("click", function () {
-          window.location.href = "index.html"
-        })
-    </script>
-    <script>
-      document.getElementById("submit-btn").addEventListener("click", function(event) {
-        event.preventDefault(); // Impede o envio do formulário padrão
-    
-        const email = document.getElementById("event-email").value;
-        const senha = document.getElementById("event-senha").value;
-    
-        // Crie um objeto FormData para enviar os dados do formulário
-        const formData = new FormData();
-        formData.append("event-email", email);
-        formData.append("event-senha", senha);
-    
-        // Faça uma solicitação POST para o endpoint /login
-        fetch("/login", {
-          method: "POST",
-          body: formData
-        })
-        .then(response => {
-          if (response.ok) {
-            // Se a resposta estiver OK, redirecione para a página de destino após o login
-            window.location.href = "/cliente"; // Redireciona para a página de cliente, por exemplo
-          } else {
-            // Se houver um erro, exiba uma mensagem de erro
-            alert("Credenciais inválidas. Por favor, tente novamente.");
-          }
-        })
-        .catch(error => {
-          // Se houver um erro na solicitação, exiba uma mensagem de erro
-          console.error("Ocorreu um erro ao enviar a solicitação:", error);
-          alert("Ocorreu um erro ao enviar a solicitação. Por favor, tente novamente.");
-        });
-      });
-    </script>
-    <script>
-      function mostrarSenha() {
-        var inputPass = document.getElementById("event-senha")
-        var btnShowPass = document.getElementById("btn-senha")
-
-        if (inputPass.type === "password") {
-          inputPass.setAttribute("type", "text")
-          btnShowPass.classList.replace("bi-eye-fill", "bi-eye-slash-fill")
-        } else {
-          inputPass.setAttribute("type", "password")
-          btnShowPass.classList.replace("bi-eye-slash-fill", "bi-eye-fill")
-        }
-      }
-    </script>
-
-    <script>
-      let darkMode = true
-
-      const buttonToggle = document.getElementById("toggle-mode")
-      // Verificar se a preferência do usuário está armazenada
-      const isLightMode = localStorage.getItem("isLightMode") === "true"
-
-      // Aplicar ou remover a classe de acordo com a preferência
-      if (isLightMode) {
-        document.documentElement.classList.add("light")
-      } else {
-        document.documentElement.classList.remove("light")
-      }
-
-      buttonToggle.addEventListener("click", (event) => {
-        document.documentElement.classList.toggle("light")
-
-        // Verificar se o modo atual é light ou não
-        const isLightMode = document.documentElement.classList.contains("light")
-
-        // Armazenar a preferência do usuário no armazenamento local
-        localStorage.setItem("isLightMode", isLightMode.toString())
-
-        // Resto do seu código de troca de modo
-
-        const mode = darkMode ? "light" : "dark"
-        event.currentTarget.querySelector(
-          "span"
-        ).textContent = `${mode} mode ativado`
-
-        darkMode = !darkMode
-      })
-    </script>
   <script src="enter.js"></script>
   </body>
 </html>

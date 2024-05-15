@@ -27,3 +27,11 @@ CREATE TABLE empresa (
     tipo_preco ENUM('Por hora', 'Diária') NOT NULL,
     preco DECIMAL(10, 2) NOT NULL
 );
+
+CREATE TABLE usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    tipo ENUM('Cliente', 'Empresa') NOT NULL
+);
